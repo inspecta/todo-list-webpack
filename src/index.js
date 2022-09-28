@@ -1,50 +1,38 @@
 import './style.css';
 
-const todoListContainer = document.querySelector('.todo-list');
+import Tasks from './modules/Tasks.js';
+import retrieveFromStorage from './modules/retrieveFromStorage.js';
+import displayTasks, { footer } from './modules/displayTasks.js';
 
-const tasks = [
-  {
-    description: 'wash the dishes',
-    completed: true,
-    index: 1,
-  },
-  {
-    description: 'complete To Do list project',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Go to market',
-    completed: true,
-    index: 3,
-  },
-];
+const insertTask = new Tasks();
 
-const input = document.createElement('div');
-input.classList.add('add-task');
-todoListContainer.appendChild(input);
-input.innerHTML = '<input type=\'text\' placeholder=\'Add to your list...\' class=\'input-task\'/>';
+let totalTasks = JSON.parse(retrieveFromStorage('todo')) || [];
 
-const tasksLists = document.createElement('ul');
-tasksLists.classList.add('tasks-list');
-todoListContainer.appendChild(tasksLists);
+displayTasks(totalTasks);
+footer();
 
-tasks.forEach((task) => {
-  const taskDetails = document.createElement('li');
-  tasksLists.appendChild(taskDetails);
-  taskDetails.innerHTML = `
-    <hr/>
-    <div class='task'>
-      <input type='checkbox' class='checkbox' value=''/>
-      <p>${task.description}</p>
-    </div>
-  `;
+const tasksListDisplay = document.querySelector('.display');
+
+if (totalTasks.length === 0) {
+  tasksListDisplay.innerHTML = '<hr/><p>No tasks available now!</p>';
+}
+
+const taskDescription = document.querySelector('.input-task');
+const inputTask = document.querySelector('.fa-arrow-left');
+inputTask.addEventListener('click', () => {
+  insertTask.addTask(taskDescription.value, false, 1);
+  tasksListDisplay.innerHTML = '';
+  totalTasks = JSON.parse(retrieveFromStorage('todo'));
+  displayTasks(totalTasks);
+  taskDescription.value = '';
 });
 
-const lowDiv = document.createElement('div');
-lowDiv.classList.add('footer');
-todoListContainer.appendChild(lowDiv);
-lowDiv.innerHTML = `
-  <hr/>
-  <p>Clear all completed.</p>
-`;
+taskDescription.addEventListener('keyup', (e) => {
+  if (e.keyCode === 13) {
+    insertTask.addTask(taskDescription.value, false, 1);
+    tasksListDisplay.innerHTML = '';
+    totalTasks = JSON.parse(retrieveFromStorage('todo'));
+    displayTasks(totalTasks);
+    taskDescription.value = '';
+  }
+});
