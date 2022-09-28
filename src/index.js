@@ -2,11 +2,6 @@ import './style.css';
 
 const todoListContainer = document.querySelector('.todo-list');
 
-const horizontalLine = (parent) => {
-  const hr = document.createElement('hr');
-  parent.appendChild(hr);
-};
-
 const tasks = [
   {
     description: 'wash the dishes',
