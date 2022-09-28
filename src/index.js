@@ -25,11 +25,6 @@ const tasks = [
   },
 ];
 
-const title = document.createElement('h2');
-title.innerHTML = 'Todays To Do';
-todoListContainer.appendChild(title);
-horizontalLine(title);
-
 const input = document.createElement('div');
 input.classList.add('add-task');
 todoListContainer.appendChild(input);
