@@ -12,9 +12,10 @@ const displayTasks = (tasksArray) => {
     <hr/>
     <div class='task'>
       <input type='checkbox' class='checkbox' value=''/>
-      <p>${task.description}</p>
-      <i class="fa-solid fa-ellipsis-vertical"></i>
-      <i class="fa-solid fa-trash-can"></i>
+      <p class="task-desc-${task.index}">${task.description}</p>
+      <input type='text' value='${task.description}' class='edit-task-${task.index}' style='display:none'/>
+      <i class="fa-solid fa-ellipsis-vertical" data-id="${task.index}"></i>
+      <i class="fa-solid fa-trash-can" data-id="${task.index}"></i>
     </div>
   `;
   });
