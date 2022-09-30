@@ -6,46 +6,81 @@ body {
   background-color: rgb(243, 242, 242);
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.add-task {
-  height: 1em;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
   justify-content: center;
-}
-
-.add-task > ::placeholder {
-  font-style: italic;
-}
-
-.input-task {
-  border: 0;
-  outline: 0;
-  font-size: 1.5em;
-  width: 100%;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .todo-list {
-  background-color: #fff;
-  width: 80%;
+  width: 50%;
   margin: auto;
-  box-shadow: 0 0 10px 5px rgb(226, 226, 226);
-  padding: 5px;
+  height: auto;
+  background-color: #fff;
+  box-shadow: 0 0 5px 5px rgb(231, 231, 231);
+  padding: 10px;
+}
+
+h3 {
+  font-style: normal;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+.add-task {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+.input-task {
+  outline: 0;
+  border: 0;
+}
+
+.input-task::placeholder {
+  font-style: italic;
+  font-size: 14px;
+}
+
+.fa-arrow-left {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.input-display {
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  cursor: auto;
 }
 
 .tasks-list {
   list-style: none;
+  padding-left: 10px;
+}
+
+.tasks-list > li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgb(224, 224, 224);
   padding-left: 0;
 }
 
 .task {
   display: flex;
   flex-direction: row;
-  gap: 5px;
-  align-items: center;
+  width: 80%;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.fa-trash-can {
+  cursor: pointer;
 }
 
 .footer {
@@ -57,5 +92,5 @@ body {
 }
 
 .footer > p {
-  margin-top: 0;
+  margin-top: 10px;
 }
