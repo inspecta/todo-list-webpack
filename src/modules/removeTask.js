@@ -1,22 +1,22 @@
-const tasksListDisplay = document.querySelector('.display');
+const removeTask = (id) => {
+  const tasksListDisplay = document.querySelector('.display');
 
-const removeTasks = (totalTasks) => {
-  const removeTask = document.querySelectorAll('.fa-trash-can');
-  removeTask.forEach((remove) => {
-    remove.addEventListener('click', () => {
-      const getTaskId = Number(remove.getAttribute('data-id'));
-      totalTasks = totalTasks.filter((task) => task.index !== getTaskId);
-      totalTasks.forEach((task, i) => {
-        task.index = i;
-      });
-      localStorage.setItem('todo', JSON.stringify(totalTasks));
-      remove.parentElement.parentElement.remove();
+  let totalTasks = JSON.parse(localStorage.getItem('todo'));
 
-      if (totalTasks.length === 0) {
-        tasksListDisplay.innerHTML = '<hr/><p>No tasks available now!</p>';
-      }
-    });
+  const btn = document.getElementById(`btn-${id}`);
+
+  totalTasks = totalTasks.filter((task) => task.index !== id);
+  /* Re allocated indices */
+  totalTasks.forEach((i, j) => {
+    i.index = j;
   });
+
+  totalTasks = localStorage.setItem('todo', JSON.stringify(totalTasks));
+  btn.parentElement.parentElement.remove();
+
+  if (totalTasks.length === 0) {
+    tasksListDisplay.innerHTML = '<hr/><p>No tasks available now!</p>';
+  }
 };
 
-export default removeTasks;
+export default removeTask;

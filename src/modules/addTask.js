@@ -14,7 +14,9 @@ const addTask = () => {
     insertTask.addTask(taskDescription.value, false, (totalTasks.length + 1));
     tasksListDisplay.innerHTML = '';
     totalTasks = JSON.parse(retrieveFromStorage('todo'));
-    displayTasks(totalTasks);
+    totalTasks.forEach((i) => {
+      displayTasks(i);
+    });
     taskDescription.value = '';
   });
 
@@ -23,7 +25,9 @@ const addTask = () => {
       insertTask.addTask(taskDescription.value, false, (totalTasks.length + 1));
       tasksListDisplay.innerHTML = '';
       totalTasks = JSON.parse(retrieveFromStorage('todo'));
-      displayTasks(totalTasks);
+      totalTasks.forEach((j) => {
+        displayTasks(j);
+      });
       taskDescription.value = '';
     }
   });

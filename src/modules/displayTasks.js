@@ -1,23 +1,43 @@
-const displayTasks = (tasksArray) => {
-  const display = document.querySelector('.display');
+import removeTask from './removeTask.js';
+import retrieveFromStorage from './retrieveFromStorage.js';
 
+const display = document.querySelector('.display');
+
+const displayTasks = (tasksObj) => {
   const tasksLists = document.createElement('ul');
   tasksLists.classList.add('tasks-list');
   display.appendChild(tasksLists);
-
-  tasksArray.forEach((task) => {
-    const taskDetails = document.createElement('li');
-    tasksLists.appendChild(taskDetails);
-    taskDetails.innerHTML = `
-    <hr/>
+  const taskDetails = document.createElement('li');
+  taskDetails.classList.add('task-list-items');
+  tasksLists.appendChild(taskDetails);
+  taskDetails.innerHTML = `
     <div class='task'>
       <input type='checkbox' class='checkbox' value=''/>
-      <p class="task-desc-${task.index}">${task.description}</p>
-      <input type='text' value='${task.description}' class='edit-task-${task.index}' style='display:none'/>
-      <i class="fa-solid fa-ellipsis-vertical" data-id="${task.index}"></i>
-      <i class="fa-solid fa-trash-can" data-id="${task.index}"></i>
+      <input type='text' value='${tasksObj.description}' id='input-display-${tasksObj.index}' data-id='${tasksObj.index}' class='input-display'/>
     </div>
+    <i class="fa-solid fa-trash-can" data-id="${tasksObj.index}" id="btn-${tasksObj.index}"></i>
   `;
+
+  const removeBtn = document.getElementById(`btn-${tasksObj.index}`);
+  removeBtn.addEventListener('click', () => {
+    removeTask(tasksObj.index);
+  });
+  /* Update tasks */
+  const editTasks = document.getElementById(`input-display-${tasksObj.index}`);
+  editTasks.addEventListener('change', () => {
+    const task = document.getElementById(`input-display-${tasksObj.index}`);
+    let totalTasks = JSON.parse(retrieveFromStorage('todo'));
+    totalTasks.forEach((item) => {
+      if (item.index === tasksObj.index) {
+        item.description = task.value;
+      }
+    });
+    totalTasks = localStorage.setItem('todo', JSON.stringify(totalTasks));
+    display.innerHTML = '';
+    totalTasks = JSON.parse(retrieveFromStorage('todo'));
+    totalTasks.forEach((i) => {
+      displayTasks(i);
+    });
   });
 };
 
@@ -28,7 +48,6 @@ export const footer = () => {
   lowDiv.classList.add('footer');
   todoListContainer.appendChild(lowDiv);
   lowDiv.innerHTML = `
-      <hr/>
       <p>Clear all completed.</p>
     `;
 };
