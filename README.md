@@ -21,6 +21,9 @@ A computer, Git, Text Editor
 
 Get the link to the repository [here](https://github.com/inspecta/todo-list-webpack)
 
+### Live demo
+For live demo of the project, click [here](https://inspecta.github.io/todo-list-webpack/)
+
 ### Install
 
 - Use the either respository HTTPS or SSH URLS to clone the project on your computer
