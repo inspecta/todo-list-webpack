@@ -13,7 +13,7 @@ body {
 }
 
 .todo-list {
-  width: 50%;
+  width: 70%;
   margin: auto;
   height: auto;
   background-color: #fff;
@@ -38,6 +38,7 @@ h3 {
 .input-task {
   outline: 0;
   border: 0;
+  width: 80%;
 }
 
 .input-task::placeholder {
@@ -102,4 +103,10 @@ h3 {
   width: 100%;
   height: 2em;
   font-size: 1.5em;
+}
+
+@media screen and (min-width: 768px) {
+  .todo-list {
+    width: 60%;
+  }
 }

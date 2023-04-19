@@ -13,17 +13,17 @@ const displayTasks = (tasksObj) => {
   tasksLists.appendChild(taskDetails);
 
   taskDetails.innerHTML = `
-    <div class='task'>
-      <input type='checkbox' class='checkbox' id='${tasksObj.index}'/>
-      <input type='text' value='${tasksObj.description}' id='input-display-${tasksObj.index}' data-id='${tasksObj.index}' class='input-display'/>
-    </div>
-    <i class="fa-solid fa-trash-can" data-id="${tasksObj.index}" id="btn-${tasksObj.index}"></i>
-  `;
+      <div class='task'>
+        <input type='checkbox' class='checkbox' id='${tasksObj.index}'/>
+        <input type='text' value='${tasksObj.description}' id='input-display-${tasksObj.index}' data-id='${tasksObj.index}' class='input-display'/>
+      </div>
+      <i class="fa-solid fa-trash-can" data-id="${tasksObj.index}" id="btn-${tasksObj.index}"></i>
+    `;
 
   const taskStatus = document.getElementById(tasksObj.index);
   const inputDisplay = document.getElementById(`input-display-${tasksObj.index}`);
 
-  if (tasksObj.completed === true) {
+  if (tasksObj.completed) {
     taskStatus.checked = true;
     inputDisplay.style.textDecoration = 'line-through';
   } else {
@@ -35,6 +35,11 @@ const displayTasks = (tasksObj) => {
   const checkbox = document.getElementById(`${tasksObj.index}`);
   checkbox.addEventListener('change', () => {
     checkCompleted(tasksObj.index);
+    if (taskStatus.checked) {
+      inputDisplay.style.textDecoration = 'line-through';
+    } else {
+      inputDisplay.style.textDecoration = 'none';
+    }
   });
 
   /* Remove tasks */
@@ -68,9 +73,11 @@ export const footer = () => {
   const lowDiv = document.createElement('div');
   lowDiv.classList.add('footer');
   todoListContainer.appendChild(lowDiv);
-  lowDiv.innerHTML = `
-      <button id='clear-tasks'>Clear all completed.</button>
-    `;
+
+  const clearBtn = document.createElement('button');
+  lowDiv.appendChild(clearBtn);
+  clearBtn.id = 'clear-tasks';
+  clearBtn.appendChild(document.createTextNode('Clear all completed'));
 
   const clearTasks = document.getElementById('clear-tasks');
   clearTasks.addEventListener('click', () => {
