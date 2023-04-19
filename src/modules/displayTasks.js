@@ -37,8 +37,10 @@ const displayTasks = (tasksObj) => {
     checkCompleted(tasksObj.index);
     if (taskStatus.checked) {
       inputDisplay.style.textDecoration = 'line-through';
+      inputDisplay.style.color = 'red';
     } else {
       inputDisplay.style.textDecoration = 'none';
+      // inputDisplay.style.color = '#000';
     }
   });
 
