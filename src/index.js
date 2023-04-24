@@ -7,7 +7,10 @@ const totalTasks = JSON.parse(retrieveFromStorage('todo')) || [];
 const tasksListDisplay = document.querySelector('.display');
 
 if (totalTasks.length === 0) {
-  tasksListDisplay.innerHTML = '<hr/><p>No tasks available now!</p>';
+  const noTasks = document.createElement('p');
+  tasksListDisplay.appendChild(noTasks);
+  noTasks.appendChild(document.createTextNode('No tasks available!'));
+  noTasks.classList.add('no-tasks');
 }
 
 /* Add a new task */

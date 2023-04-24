@@ -2,35 +2,35 @@
 
 html {
   font-family: "Nunito", sans-serif;
-  background-color: #e5ffef;
+  background-image: url(./images/bg.avif);
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
   overflow: hidden;
 }
 
 .todo-list {
-  width: 70%;
+  width: 90%;
   margin: auto;
   height: auto;
-  box-shadow: 5px 5px 5px 2px #277647;
   padding: 10px;
-  border-radius: 10px;
-  background-color: #b4cc4e;
+  background-color: hsl(180, 98%, 51%, 0.2);
 }
 
 h3 {
   font-style: normal;
   padding-bottom: 10px;
-  border-bottom: 1px solid #4b0c3b;
-  color: #4b0c3b;
+  border-bottom: 1px solid hsl(180, 98%, 51%, 0.5);
+  color: #09fcfc;
   font-weight: bolder;
-  font-size: 1.5em;
+  font-size: 2em;
+  text-align: center;
 }
 
 .add-task {
@@ -39,14 +39,29 @@ h3 {
   justify-content: space-between;
   align-items: center;
   padding-bottom: 10px;
-  border-bottom: 1px solid #4b0c3b;
+  border-bottom: 1px solid hsl(180, 98%, 51%, 0.5);
+  position: relative;
+}
+
+#notification {
+  position: absolute;
+  color: #fff;
+  background-color: hsl(120, 100%, 25%);
+  padding: 10px 10px;
+  border-radius: 5px;
+  width: 50%;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #fff;
+  display: none;
 }
 
 .input-task {
   outline: 0;
   border: 0;
   width: 90%;
-  padding: 15px;
   background-color: inherit;
   border-radius: 5px;
   color: #fff;
@@ -54,21 +69,39 @@ h3 {
 }
 
 .input-task::placeholder {
-  font-style: italic;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .fa-arrow-left {
   margin-right: 10px;
   cursor: pointer;
+  font-size: 2em;
+  color: hsl(180, 98%, 51%, 0.6);
+}
+
+.fa-arrow-left:hover {
+  color: hsl(180, 98%, 51%, 1);
+}
+
+.no-tasks {
+  font-size: 1.3em;
+  color: #09fcfc;
+  text-align: center;
 }
 
 .input-display {
   border: 0;
   outline: 0;
-  font-size: 16px;
+  font-size: 17px;
   cursor: auto;
   background-color: inherit;
+  color: hsl(180, 98%, 51%, 0.7);
+  width: 100%;
+}
+
+.input-display:focus {
+  color: hsla(133, 100%, 50%, 0.5);
+  font-style: italic;
 }
 
 .completed {
@@ -85,7 +118,7 @@ h3 {
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 10px;
-  border-bottom: 1px solid #ffc0ef;
+  border-bottom: 1px solid hsl(180, 98%, 51%, 0.3);
   padding-left: 0;
 }
 
@@ -99,6 +132,7 @@ h3 {
 
 .fa-trash-can {
   cursor: pointer;
+  font-size: 1.3em;
 }
 
 .fa-trash-can:hover {
@@ -120,7 +154,11 @@ h3 {
   width: 100%;
   height: 2em;
   font-size: 1.5em;
-  background-color: #b891b0;
+  background-color: #fff;
+}
+
+#clear-tasks:hover {
+  color: red;
 }
 
 @media screen and (min-width: 768px) {
