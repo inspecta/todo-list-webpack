@@ -33,7 +33,6 @@
 
 **TODO LIST ** is a simple todo list that keeps track of an individuals tasks. A user can add a task, edit or even delete it. When the task is completed, user is able to mark is as complete. The tasks are sorted using their indices.
 
-
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
@@ -68,6 +67,10 @@
 - Add a todo task
 - Edit or delete your todo task
 - Mark your task as completed
+
+### Screenshot
+
+![](./app_screenshot.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
