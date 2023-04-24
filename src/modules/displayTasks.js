@@ -15,9 +15,19 @@ const displayTasks = (tasksObj) => {
   taskDetails.innerHTML = `
       <div class='task'>
         <input type='checkbox' class='checkbox' id='${tasksObj.index}'/>
-        <input type='text' value='${tasksObj.description}' id='input-display-${tasksObj.index}' data-id='${tasksObj.index}' class='input-display'/>
+        <input
+          type='text'
+          value='${tasksObj.description}'
+          id='input-display-${tasksObj.index}'
+          data-id='${tasksObj.index}'
+          class='input-display'
+        />
       </div>
-      <i class="fa-solid fa-trash-can" data-id="${tasksObj.index}" id="btn-${tasksObj.index}"></i>
+      <i
+        class="fa-solid fa-trash-can"
+        data-id="${tasksObj.index}"
+        id="btn-${tasksObj.index}"
+      />
     `;
 
   const taskStatus = document.getElementById(tasksObj.index);
@@ -37,10 +47,10 @@ const displayTasks = (tasksObj) => {
     checkCompleted(tasksObj.index);
     if (taskStatus.checked) {
       inputDisplay.style.textDecoration = 'line-through';
-      inputDisplay.style.color = 'red';
+      inputDisplay.style.color = 'hsl(180, 98%, 51%, 1)';
     } else {
       inputDisplay.style.textDecoration = 'none';
-      // inputDisplay.style.color = '#000';
+      inputDisplay.style.color = 'hsl(180, 98%, 51%, 0.7)';
     }
   });
 
@@ -82,6 +92,7 @@ export const footer = () => {
   clearBtn.appendChild(document.createTextNode('Clear all completed'));
 
   const clearTasks = document.getElementById('clear-tasks');
+  // console.log(completedTasks);
   clearTasks.addEventListener('click', () => {
     let totalTasks = JSON.parse(retrieveFromStorage('todo'));
     totalTasks = totalTasks.filter((task) => task.completed !== true);

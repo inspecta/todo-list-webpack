@@ -1,6 +1,6 @@
-const removeTask = (id) => {
-  const tasksListDisplay = document.querySelector('.display');
+import displayNotification from "./displayNotification";
 
+const removeTask = (id) => {
   let totalTasks = JSON.parse(localStorage.getItem('todo'));
 
   const btn = document.getElementById(`btn-${id}`);
@@ -14,9 +14,7 @@ const removeTask = (id) => {
   totalTasks = localStorage.setItem('todo', JSON.stringify(totalTasks));
   btn.parentElement.parentElement.remove();
 
-  if (totalTasks.length === 0) {
-    tasksListDisplay.innerHTML = '<hr/><p>No tasks available now!</p>';
-  }
+  displayNotification('Task removed successfully.');
 };
 
 export default removeTask;
